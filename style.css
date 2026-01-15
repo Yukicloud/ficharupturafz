@@ -6,7 +6,6 @@
   --verde:#22c55e;
   --amarelo:#facc15;
   --vermelho:#ef4444;
-  --laranja:#fb923c;
   --texto:#e5e7eb;
 }
 
@@ -18,52 +17,8 @@
 body{
   background:black;
   color:var(--texto);
-  margin:0;
   padding:30px;
-}
-
-.hidden{display:none}
-
-/* VHS */
-.scanlines{
-  position:fixed;
-  inset:0;
-  background:repeating-linear-gradient(
-    to bottom,
-    rgba(255,255,255,.03),
-    rgba(255,255,255,.03) 1px,
-    transparent 2px,
-    transparent 4px
-  );
-  pointer-events:none;
-  z-index:999;
-}
-
-.noise{
-  position:fixed;
-  inset:0;
-  background:url("https://i.imgur.com/8kKQF6y.gif");
-  opacity:.05;
-  pointer-events:none;
-  z-index:998;
-}
-
-/* Intro */
-.vhs-screen{
-  position:fixed;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:black;
-  z-index:1000;
-}
-
-.blink{animation:blink 1s infinite}
-
-@keyframes blink{
-  0%,50%{opacity:1}
-  51%,100%{opacity:0}
+  margin:0;
 }
 
 .container{
@@ -71,21 +26,37 @@ body{
   margin:auto;
 }
 
-header{
-  text-align:center;
-  margin-bottom:30px;
+.hidden{display:none}
+
+.scanlines, .noise{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
 }
+
+.scanlines{
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,.03),
+    rgba(255,255,255,.03) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  z-index:10;
+}
+
+.noise{
+  background:url("https://i.imgur.com/8kKQF6y.gif");
+  opacity:.05;
+  z-index:9;
+}
+
+header{text-align:center;margin-bottom:30px}
 
 .glitch{
-  font-size:48px;
+  font-size:40px;
   color:var(--ciano);
   text-shadow:0 0 10px var(--ciano);
-  animation:glitch .15s infinite;
-}
-
-@keyframes glitch{
-  0%{text-shadow:2px 0 red,-2px 0 cyan}
-  100%{text-shadow:-2px 0 red,2px 0 cyan}
 }
 
 .card{
@@ -95,9 +66,7 @@ header{
   margin-bottom:20px;
 }
 
-h2{cursor:pointer;color:var(--roxo)}
-
-.section:not(.open){display:none}
+h2{color:var(--roxo)}
 
 label{
   display:block;
@@ -113,7 +82,13 @@ input,select,textarea{
   color:var(--texto);
 }
 
-textarea{min-height:120px}
+textarea{min-height:130px}
+
+.points{
+  text-align:center;
+  margin-bottom:10px;
+  color:var(--amarelo);
+}
 
 .grid{
   display:grid;
@@ -129,19 +104,12 @@ textarea{min-height:120px}
 }
 
 .stat button{
-  width:28px;
-  height:28px;
+  width:26px;
+  height:26px;
   background:var(--roxo);
   border:none;
   color:white;
   cursor:pointer;
-}
-
-.points{
-  text-align:center;
-  font-size:18px;
-  color:var(--amarelo);
-  margin-bottom:10px;
 }
 
 .bar{
@@ -151,34 +119,29 @@ textarea{min-height:120px}
   margin-bottom:12px;
 }
 
-.fill{height:100%;width:0%;transition:.3s}
+.fill{
+  height:100%;
+  width:100%;
+  transition:.3s;
+}
 
-.hp{background:var(--vermelho)}
 .san{background:var(--ciano)}
 .pe{background:var(--verde)}
-.res{background:var(--laranja)}
 
 .save{
   display:flex;
   gap:10px;
 }
 
-.save button{
+.save button, .danger{
   flex:1;
-  padding:16px;
+  padding:14px;
   background:linear-gradient(90deg,var(--roxo),var(--ciano));
   border:none;
-  font-size:16px;
   cursor:pointer;
 }
 
-.final{
-  position:fixed;
-  inset:0;
-  background:black;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
+.danger{
+  background:var(--vermelho);
+  margin-top:10px;
 }
