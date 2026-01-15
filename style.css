@@ -1,6 +1,5 @@
-/* cores continuam retro */
 :root{
-  --bg:#020617;
+  --bg:#000;
   --card:#050b1a;
   --ciano:#22d3ee;
   --roxo:#a855f7;
@@ -11,19 +10,169 @@
   --texto:#e5e7eb;
 }
 
+*{
+  box-sizing:border-box;
+  font-family:"Courier New", monospace;
+}
+
+body{
+  background:black;
+  color:var(--texto);
+  margin:0;
+  padding:30px;
+}
+
+.hidden{display:none}
+
+/* VHS */
+.scanlines{
+  position:fixed;
+  inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,.03),
+    rgba(255,255,255,.03) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events:none;
+  z-index:999;
+}
+
+.noise{
+  position:fixed;
+  inset:0;
+  background:url("https://i.imgur.com/8kKQF6y.gif");
+  opacity:.05;
+  pointer-events:none;
+  z-index:998;
+}
+
+/* Intro */
+.vhs-screen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:black;
+  z-index:1000;
+}
+
+.blink{animation:blink 1s infinite}
+
+@keyframes blink{
+  0%,50%{opacity:1}
+  51%,100%{opacity:0}
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+}
+
+header{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.glitch{
+  font-size:48px;
+  color:var(--ciano);
+  text-shadow:0 0 10px var(--ciano);
+  animation:glitch .15s infinite;
+}
+
+@keyframes glitch{
+  0%{text-shadow:2px 0 red,-2px 0 cyan}
+  100%{text-shadow:-2px 0 red,2px 0 cyan}
+}
+
+.card{
+  background:var(--card);
+  border-left:5px solid var(--roxo);
+  padding:20px;
+  margin-bottom:20px;
+}
+
+h2{cursor:pointer;color:var(--roxo)}
+
+.section:not(.open){display:none}
+
+label{
+  display:block;
+  margin-top:10px;
+  color:var(--amarelo);
+}
+
+input,select,textarea{
+  width:100%;
+  padding:8px;
+  background:black;
+  border:1px solid var(--ciano);
+  color:var(--texto);
+}
+
+textarea{min-height:120px}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:12px;
+}
+
+.stat{
+  background:black;
+  border:1px solid var(--ciano);
+  padding:10px;
+  text-align:center;
+}
+
+.stat button{
+  width:28px;
+  height:28px;
+  background:var(--roxo);
+  border:none;
+  color:white;
+  cursor:pointer;
+}
+
+.points{
+  text-align:center;
+  font-size:18px;
+  color:var(--amarelo);
+  margin-bottom:10px;
+}
+
+.bar{
+  background:black;
+  border:1px solid var(--ciano);
+  height:14px;
+  margin-bottom:12px;
+}
+
+.fill{height:100%;width:0%;transition:.3s}
+
+.hp{background:var(--vermelho)}
+.san{background:var(--ciano)}
+.pe{background:var(--verde)}
 .res{background:var(--laranja)}
 
-.save-buttons{
+.save{
   display:flex;
   gap:10px;
 }
 
-.main.alt{
-  background:linear-gradient(90deg,var(--ciano),var(--roxo));
+.save button{
+  flex:1;
+  padding:16px;
+  background:linear-gradient(90deg,var(--roxo),var(--ciano));
+  border:none;
+  font-size:16px;
+  cursor:pointer;
 }
 
-/* OVERLAY FINAL */
-.glitch-overlay{
+.final{
   position:fixed;
   inset:0;
   background:black;
@@ -32,13 +181,4 @@
   justify-content:center;
   align-items:center;
   z-index:2000;
-}
-
-.glitch-overlay p{
-  font-size:18px;
-  color:var(--amarelo);
-}
-
-.glitch-overlay.hidden{
-  display:none;
 }
