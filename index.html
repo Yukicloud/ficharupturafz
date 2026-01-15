@@ -2,104 +2,91 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>A RUPTURA</title>
+  <title>Ficha RPG</title>
 
   <link rel="stylesheet" href="style.css">
-
-  <!-- Captura para imagem -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
 
-<!-- EFEITOS VHS -->
 <div class="scanlines"></div>
 <div class="noise"></div>
 
-<!-- INTRO -->
-<div id="vhs-screen" class="vhs-screen">
-  <div class="vhs-content">
-    <h1 class="glitch">A RUPTURA</h1>
-    <p>NEW YORK · ANOS 80</p>
-    <p class="blink">▶ CLIQUE OU PRESSIONE ENTER</p>
-  </div>
-</div>
-
-<!-- FICHA -->
-<main id="ficha" class="container hidden">
+<main id="ficha" class="container">
 
 <header>
-  <h1 class="glitch">A RUPTURA</h1>
-  <p class="subtitle">(coloque o nome do teu personagem)</p>
+  <h1 class="glitch">FICHA DE PERSONAGEM</h1>
 </header>
 
 <section class="card">
-  <h2 onclick="toggleSection(this)">IDENTIDADE</h2>
-  <div class="section open">
-    <label>Nome do Personagem</label>
-    <input type="text">
+  <h2>IDENTIDADE</h2>
 
-    <label>Ocupação (anos 80)</label>
-    <input type="text">
+  <label>Nome do Personagem</label>
+  <input type="text">
 
-    <label>@Discord / ID</label>
-    <input type="text">
+  <label>Idade</label>
+  <input type="number">
 
-    <label>Raça</label>
-    <select id="race">
-      <option value="">Selecione</option>
-      <option value="Humano">Humano</option>
-      <option value="Furry">Furry</option>
+  <label>Ocupação</label>
+  <input type="text">
+
+  <label>Discord / ID</label>
+  <input type="text">
+
+  <label>Raça</label>
+  <select id="race">
+    <option value="">Selecione</option>
+    <option value="Humano">Humano</option>
+    <option value="Furry">Furry</option>
+  </select>
+
+  <div id="subrace-box" class="hidden">
+    <label>Espécie (Furry)</label>
+    <select>
+      <option>Canidae</option>
+      <option>Felidae</option>
+      <option>Vulpinae</option>
+      <option>Ursidae</option>
+      <option>Ave</option>
+      <option>Réptil</option>
+      <option>Anfíbio</option>
+      <option>Roedor</option>
+      <option>Outro</option>
     </select>
-
-    <div id="subrace-box" class="hidden">
-      <label>Espécie</label>
-      <select>
-        <option>Canidae</option>
-        <option>Felinae</option>
-        <option>Vulpinae</option>
-        <option>Ursidae</option>
-        <option>Ave</option>
-        <option>Réptil</option>
-        <option>Anfíbio</option>
-        <option>Roedor</option>
-        <option>Outro</option>
-      </select>
-    </div>
   </div>
 </section>
 
 <section class="card">
-  <h2 onclick="toggleSection(this)">ATRIBUTOS</h2>
-  <div class="section open">
-    <div class="points">
-      PONTOS DISPONÍVEIS: <span id="points">20</span>
-    </div>
-    <div id="stats" class="grid"></div>
+  <h2>ATRIBUTOS</h2>
+
+  <div class="points">
+    PONTOS DISPONÍVEIS: <span id="points">15</span>
   </div>
+
+  <div id="stats" class="grid"></div>
 </section>
 
 <section class="card">
-  <h2 onclick="toggleSection(this)">STATUS</h2>
-  <div class="section open">
-    <label>HP</label>
-    <div class="bar"><div id="hp" class="fill hp"></div></div>
+  <h2>STATUS</h2>
 
-    <label>Sanidade</label>
-    <div class="bar"><div id="sanity" class="fill san"></div></div>
-
-    <label>Esforço</label>
-    <div class="bar"><div id="effort" class="fill pe"></div></div>
-
-    <label>Resistência</label>
-    <div class="bar"><div id="resist" class="fill res"></div></div>
+  <label>Sanidade</label>
+  <div class="bar">
+    <div id="sanityBar" class="fill san"></div>
   </div>
+
+  <label>Esforço</label>
+  <div class="bar">
+    <div id="effortBar" class="fill pe"></div>
+  </div>
+
+  <button class="danger" onclick="useEffort()">
+    GASTAR ESFORÇO
+  </button>
 </section>
 
 <section class="card">
-  <h2 onclick="toggleSection(this)">HISTÓRIA & TRAUMAS</h2>
-  <div class="section">
-    <textarea placeholder="O que a Ruptura mudou em você?"></textarea>
-  </div>
+  <h2>LORE / HISTÓRIA</h2>
+  <textarea placeholder="Conte a história do personagem, traumas, passado, motivações..."></textarea>
 </section>
 
 <section class="save">
@@ -108,13 +95,6 @@
 </section>
 
 </main>
-
-<!-- TELA FINAL -->
-<div id="final-screen" class="final hidden">
-  <h1 class="glitch">FICHA GERADA</h1>
-  <p>Envie no chat de <strong>Ficha</strong></p>
-  <p>Marque o <strong>Mestre</strong> ou <strong>Narrador</strong></p>
-</div>
 
 <script src="script.js"></script>
 </body>
