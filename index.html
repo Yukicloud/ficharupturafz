@@ -6,15 +6,16 @@
 
   <link rel="stylesheet" href="style.css">
 
-  <!-- html2canvas para PNG/JPEG -->
+  <!-- Captura para imagem -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
 
+<!-- EFEITOS VHS -->
 <div class="scanlines"></div>
 <div class="noise"></div>
 
-<!-- INTRO VHS -->
+<!-- INTRO -->
 <div id="vhs-screen" class="vhs-screen">
   <div class="vhs-content">
     <h1 class="glitch">A RUPTURA</h1>
@@ -24,15 +25,14 @@
 </div>
 
 <!-- FICHA -->
-<div id="ficha" class="container hidden">
+<main id="ficha" class="container hidden">
 
 <header>
   <h1 class="glitch">A RUPTURA</h1>
   <p class="subtitle">(coloque o nome do teu personagem)</p>
 </header>
 
-<!-- IDENTIDADE -->
-<div class="card">
+<section class="card">
   <h2 onclick="toggleSection(this)">IDENTIDADE</h2>
   <div class="section open">
     <label>Nome do Personagem</label>
@@ -45,7 +45,7 @@
     <input type="text">
 
     <label>Raça</label>
-    <select id="race" onchange="updateSubrace()">
+    <select id="race">
       <option value="">Selecione</option>
       <option value="Humano">Humano</option>
       <option value="Furry">Furry</option>
@@ -66,54 +66,51 @@
       </select>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ATRIBUTOS -->
-<div class="card">
+<section class="card">
   <h2 onclick="toggleSection(this)">ATRIBUTOS</h2>
   <div class="section open">
     <div class="points">
       PONTOS DISPONÍVEIS: <span id="points">20</span>
     </div>
-    <div class="grid" id="stats"></div>
+    <div id="stats" class="grid"></div>
   </div>
-</div>
+</section>
 
-<!-- STATUS -->
-<div class="card">
+<section class="card">
   <h2 onclick="toggleSection(this)">STATUS</h2>
   <div class="section open">
     <label>HP</label>
     <div class="bar"><div id="hp" class="fill hp"></div></div>
 
-    <label>SANIDADE (variável)</label>
+    <label>Sanidade</label>
     <div class="bar"><div id="sanity" class="fill san"></div></div>
 
-    <label>ESFORÇO</label>
+    <label>Esforço</label>
     <div class="bar"><div id="effort" class="fill pe"></div></div>
 
-    <label>RESISTÊNCIA</label>
+    <label>Resistência</label>
     <div class="bar"><div id="resist" class="fill res"></div></div>
   </div>
-</div>
+</section>
 
-<!-- HISTÓRIA -->
-<div class="card">
+<section class="card">
   <h2 onclick="toggleSection(this)">HISTÓRIA & TRAUMAS</h2>
   <div class="section">
-    <textarea placeholder="O que a Ruptura tirou de você?"></textarea>
+    <textarea placeholder="O que a Ruptura mudou em você?"></textarea>
   </div>
-</div>
+</section>
 
-<!-- SALVAR -->
-<div class="save-buttons">
-  <button class="main" onclick="saveImage('png')">SALVAR PNG</button>
-  <button class="main alt" onclick="saveImage('jpeg')">SALVAR JPEG</button>
-</div>
+<section class="save">
+  <button onclick="saveImage('png')">SALVAR PNG</button>
+  <button onclick="saveImage('jpeg')">SALVAR JPEG</button>
+</section>
 
-</div>
+</main>
 
-<div id="glitch-overlay" class="glitch-overlay hidden">
+<!-- TELA FINAL -->
+<div id="final-screen" class="final hidden">
   <h1 class="glitch">FICHA GERADA</h1>
   <p>Envie no chat de <strong>Ficha</strong></p>
   <p>Marque o <strong>Mestre</strong> ou <strong>Narrador</strong></p>
