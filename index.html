@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>A RUPTURA</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<!-- EFEITOS VHS -->
+<div class="scanlines"></div>
+<div class="noise"></div>
+
+<!-- TELA INICIAL VHS -->
+<div id="vhs-screen" class="vhs-screen">
+  <div class="vhs-content">
+    <h1 class="glitch">A RUPTURA</h1>
+    <p>NEW YORK · ANOS 80</p>
+    <p class="blink">▶ CLIQUE OU PRESSIONE ENTER</p>
+  </div>
+</div>
+
+<!-- FICHA -->
+<div id="ficha" class="container hidden">
+
+<header>
+  <h1 class="glitch">A RUPTURA</h1>
+  <p class="subtitle">A realidade falhou.</p>
+</header>
+
+<!-- IDENTIDADE -->
+<div class="card">
+  <h2 onclick="toggleSection(this)">IDENTIDADE</h2>
+  <div class="section open">
+    <label>Nome</label>
+    <input type="text">
+
+    <label>Ocupação (anos 80)</label>
+    <input type="text">
+
+    <label>@Discord / ID</label>
+    <input type="text">
+
+    <label>Raça</label>
+    <select id="race" onchange="updateSubrace()">
+      <option value="">Selecione</option>
+      <option value="Humano">Humano</option>
+      <option value="Furry">Furry</option>
+    </select>
+
+    <div id="subrace-box" class="hidden">
+      <label>Espécie</label>
+      <select>
+        <option>Canidae</option>
+        <option>Felinae</option>
+        <option>Vulpinae</option>
+        <option>Ursidae</option>
+        <option>Ave</option>
+        <option>Réptil</option>
+        <option>Anfíbio</option>
+        <option>Roedor</option>
+        <option>Outro</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- ATRIBUTOS -->
+<div class="card">
+  <h2 onclick="toggleSection(this)">ATRIBUTOS</h2>
+  <div class="section open">
+    <div class="points">
+      PONTOS DISPONÍVEIS: <span id="points">15</span>
+    </div>
+    <div class="grid" id="stats"></div>
+  </div>
+</div>
+
+<!-- CONDIÇÃO -->
+<div class="card">
+  <h2 onclick="toggleSection(this)">CONDIÇÃO</h2>
+  <div class="section open">
+    <label>HP</label>
+    <div class="bar"><div id="hp" class="fill hp"></div></div>
+
+    <label>SANIDADE</label>
+    <div class="bar"><div id="sanity" class="fill san"></div></div>
+
+    <label>ESFORÇO</label>
+    <div class="bar"><div id="effort" class="fill pe"></div></div>
+  </div>
+</div>
+
+<!-- HISTÓRIA -->
+<div class="card">
+  <h2 onclick="toggleSection(this)">HISTÓRIA & TRAUMAS</h2>
+  <div class="section">
+    <textarea placeholder="O que você viu depois da Ruptura?"></textarea>
+  </div>
+</div>
+
+<button class="main" onclick="savePDF()">ARQUIVAR RELATÓRIO</button>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
