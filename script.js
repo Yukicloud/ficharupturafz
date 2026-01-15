@@ -1,45 +1,29 @@
-/* ===== INTRO ===== */
-let started = false;
-
-function startRPG(){
-  if(started) return;
-  started = true;
-
-  document.getElementById("vhs-screen")?.remove();
-  document.getElementById("ficha")?.classList.remove("hidden");
-}
-
-document.addEventListener("keydown", e => {
-  if(e.key === "Enter") startRPG();
-});
-document.addEventListener("click", startRPG);
-document.addEventListener("touchstart", startRPG);
-
-
 /* ===== RAÇAS ===== */
-const raceSelect = document.getElementById("race");
+const race = document.getElementById("race");
 const subraceBox = document.getElementById("subrace-box");
 
-raceSelect.addEventListener("change", () => {
-  subraceBox.classList.toggle("hidden", raceSelect.value !== "Furry");
+race.addEventListener("change", () => {
+  subraceBox.classList.toggle("hidden", race.value !== "Furry");
 });
-
 
 /* ===== ATRIBUTOS ===== */
 const attributes = [
   "Força",
+  "Enganação",
+  "Inteligência",
   "Agilidade",
-  "Intelecto",
   "Percepção",
-  "Presença",
-  "Vontade",
-  "Sorte",
-  "Conhecimento"
+  "Sanidade"
 ];
 
-let points = 20;
+let points = 15;
+let sanity = 100;
+let effort = 100;
+
 const stats = document.getElementById("stats");
 const pointsEl = document.getElementById("points");
+const sanityBar = document.getElementById("sanityBar");
+const effortBar = document.getElementById("effortBar");
 
 attributes.forEach(attr => {
   const div = document.createElement("div");
@@ -64,44 +48,40 @@ function changeStat(btn, val){
   points -= val;
   pointsEl.innerText = points;
 
+  recalcSanity();
+}
+
+function recalcSanity(){
+  const sanAttr = [...document.querySelectorAll(".stat")]
+    .find(s => s.innerText.includes("Sanidade"))
+    .querySelector("span").innerText;
+
+  sanity = Math.min(100, 50 + sanAttr * 10);
   updateBars();
 }
 
+/* ===== ESFORÇO → SANIDADE ===== */
+function useEffort(){
+  if(effort <= 0 || sanity <= 0) return;
 
-/* ===== STATUS ===== */
+  effort -= 10;
+  sanity -= 5;
+
+  updateBars();
+}
+
 function updateBars(){
-  const values = [...document.querySelectorAll(".stat span")]
-    .map(s => +s.innerText);
-
-  const total = values.reduce((a,b)=>a+b,0);
-  const presenca = values[4];
-  const vontade = values[5];
-
-  hp.style.width = Math.min(100, total * 1.5) + "%";
-  effort.style.width = Math.min(100, total) + "%";
-  resist.style.width = Math.min(100, (values[0]+values[1]) * 2) + "%";
-
-  const sanityBase = 50 + presenca * 5 + vontade * 5;
-  sanity.style.width = Math.min(100, sanityBase) + "%";
+  sanityBar.style.width = Math.max(0, sanity) + "%";
+  effortBar.style.width = Math.max(0, effort) + "%";
 }
-
-
-/* ===== UI ===== */
-function toggleSection(el){
-  el.nextElementSibling.classList.toggle("open");
-}
-
 
 /* ===== SALVAR ===== */
 function saveImage(type){
   html2canvas(document.getElementById("ficha"), {scale:2})
     .then(canvas => {
       const link = document.createElement("a");
-      link.download = `A_RUPTURA_FICHA.${type}`;
+      link.download = `Ficha_RPG.${type}`;
       link.href = canvas.toDataURL(`image/${type}`);
       link.click();
-
-      document.getElementById("final-screen")
-        .classList.remove("hidden");
     });
 }
