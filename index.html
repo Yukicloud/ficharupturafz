@@ -2,97 +2,109 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Ficha RPG</title>
+  <title>A RUPTURA — Ficha</title>
 
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
 
-<div class="scanlines"></div>
-<div class="noise"></div>
+<!-- TELA INICIAL -->
+<section id="intro" class="intro">
+  <div class="scanlines"></div>
+  <div class="noise"></div>
 
-<main id="ficha" class="container">
+  <h1 class="glitch">A RUPTURA</h1>
+  <p class="blink">
+    📱 TOQUE NA TELA<br>
+    💻 ENTER ou SPACE
+  </p>
+</section>
 
-<header>
-  <h1 class="glitch">FICHA DE PERSONAGEM</h1>
-</header>
+<!-- FICHA -->
+<main id="ficha" class="container hidden">
 
-<section class="card">
-  <h2>IDENTIDADE</h2>
+  <h2 class="title">FICHA DE PERSONAGEM</h2>
 
-  <label>Nome do Personagem</label>
-  <input type="text">
+  <!-- IDENTIDADE -->
+  <section class="card">
+    <h3>Identidade</h3>
 
-  <label>Idade</label>
-  <input type="number">
+    <label>Nome do personagem</label>
+    <input type="text" placeholder="Coloque o nome do teu personagem">
 
-  <label>Ocupação</label>
-  <input type="text">
+    <label>Idade</label>
+    <input type="number">
 
-  <label>Discord / ID</label>
-  <input type="text">
+    <label>Ocupação</label>
+    <input type="text">
 
-  <label>Raça</label>
-  <select id="race">
-    <option value="">Selecione</option>
-    <option value="Humano">Humano</option>
-    <option value="Furry">Furry</option>
-  </select>
-
-  <div id="subrace-box" class="hidden">
-    <label>Espécie (Furry)</label>
-    <select>
-      <option>Canidae</option>
-      <option>Felidae</option>
-      <option>Vulpinae</option>
-      <option>Ursidae</option>
-      <option>Ave</option>
-      <option>Réptil</option>
-      <option>Anfíbio</option>
-      <option>Roedor</option>
-      <option>Outro</option>
+    <label>Raça</label>
+    <select id="race">
+      <option value="">Selecione</option>
+      <option value="Humano">Humano</option>
+      <option value="Furry">Furry</option>
     </select>
-  </div>
-</section>
 
-<section class="card">
-  <h2>ATRIBUTOS</h2>
+    <div id="subrace-box" class="hidden">
+      <label>Espécie (Furry)</label>
+      <select>
+        <option>Canidae</option>
+        <option>Felidae</option>
+        <option>Vulpinae</option>
+        <option>Ursidae</option>
+        <option>Ave</option>
+        <option>Réptil</option>
+        <option>Anfíbio</option>
+        <option>Roedor</option>
+        <option>Outro</option>
+      </select>
+    </div>
+  </section>
 
-  <div class="points">
-    PONTOS DISPONÍVEIS: <span id="points">15</span>
-  </div>
+  <!-- ATRIBUTOS -->
+  <section class="card">
+    <h3>Atributos</h3>
 
-  <div id="stats" class="grid"></div>
-</section>
+    <div class="points">
+      Pontos disponíveis: <span id="points">20</span>
+    </div>
 
-<section class="card">
-  <h2>STATUS</h2>
+    <div id="stats" class="grid"></div>
+  </section>
 
-  <label>Sanidade</label>
-  <div class="bar">
-    <div id="sanityBar" class="fill san"></div>
-  </div>
+  <!-- STATUS -->
+  <section class="card">
+    <h3>Status</h3>
 
-  <label>Esforço</label>
-  <div class="bar">
-    <div id="effortBar" class="fill pe"></div>
-  </div>
+    <label>Sanidade</label>
+    <div class="bar">
+      <div id="sanityBar" class="fill san"></div>
+    </div>
 
-  <button class="danger" onclick="useEffort()">
-    GASTAR ESFORÇO
-  </button>
-</section>
+    <label>Esforço</label>
+    <div class="bar">
+      <div id="effortBar" class="fill pe"></div>
+    </div>
 
-<section class="card">
-  <h2>LORE / HISTÓRIA</h2>
-  <textarea placeholder="Conte a história do personagem, traumas, passado, motivações..."></textarea>
-</section>
+    <button class="danger" onclick="useEffort()">
+      Gastar Esforço (perde sanidade)
+    </button>
 
-<section class="save">
-  <button onclick="saveImage('png')">SALVAR PNG</button>
-  <button onclick="saveImage('jpeg')">SALVAR JPEG</button>
-</section>
+    <div id="traumaBox" class="trauma hidden"></div>
+  </section>
+
+  <!-- LORE -->
+  <section class="card">
+    <h3>Lore / História</h3>
+    <textarea placeholder="Conte a história, traumas, passado, motivações..."></textarea>
+  </section>
+
+  <!-- SALVAR -->
+  <section class="save">
+    <button onclick="saveImage('png')">Salvar PNG</button>
+    <button onclick="saveImage('jpeg')">Salvar JPEG</button>
+  </section>
 
 </main>
 
